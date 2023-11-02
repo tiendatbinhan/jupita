@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "286208052974",
+    "project_id": "jupita-e0dce",
+    "storage_bucket": "jupita-e0dce.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:286208052974:android:d3f3857035d2701b8cedff",
+        "android_client_info": {
+          "package_name": "com.nt118.uit21520707.jupita"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAiOpqceqfg7w_hiBdLRu6WpwgL7WtPmf4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
