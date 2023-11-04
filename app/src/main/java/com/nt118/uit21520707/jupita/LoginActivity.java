@@ -20,6 +20,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
 
 public class LoginActivity extends AppCompatActivity {
     private final FirebaseAuth mAuth = FirebaseAuth.getInstance();
@@ -47,7 +48,20 @@ public class LoginActivity extends AppCompatActivity {
 
             Query userQuery = mUserDatabase.getReference("Users").orderByChild("username")
                     .equalTo(targetUsername);
+            userQuery.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                    if (snapshot.getChildrenCount() == 0)
+                        Toast.makeText(LoginActivity.this,
+                                "Wrong username or password. Try again.", Toast.LENGTH_LONG).show();
+                    Log.i("Login", "Login unsuccessfully");
+                }
 
+                @Override
+                public void onCancelled(@NonNull DatabaseError error) {
+
+                }
+            });
             userQuery.addChildEventListener(new ChildEventListener() {
                         String targetEmail;
 
