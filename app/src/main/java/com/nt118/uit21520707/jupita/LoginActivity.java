@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -27,8 +28,6 @@ public class LoginActivity extends AppCompatActivity {
 
     private final FirebaseDatabase mUserDatabase = FirebaseDatabase.getInstance();
 
-    private Button loginButton;
-
     private EditText editTextUsername;
 
     private EditText editTextPassword;
@@ -38,7 +37,8 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_logout);
 
-        loginButton = findViewById(R.id.LG);
+        Button loginButton = findViewById(R.id.LG);
+        Button signupButton = findViewById(R.id.REG);
         editTextUsername = findViewById(R.id.edtUsn);
         editTextPassword = findViewById(R.id.edtPw);
 
@@ -119,5 +119,12 @@ public class LoginActivity extends AppCompatActivity {
                         }
                     });
         });
+        signupButton.setOnClickListener(
+                view -> {
+                    Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+        );
     }
 }
