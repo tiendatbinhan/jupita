@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "286208052974",
+    "firebase_url": "https://jupita-e0dce-default-rtdb.asia-southeast1.firebasedatabase.app",
     "project_id": "jupita-e0dce",
     "storage_bucket": "jupita-e0dce.appspot.com"
   },
@@ -12,7 +13,12 @@
           "package_name": "com.nt118.uit21520707.jupita"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "286208052974-s12qhomjlhhi5l96uiuv464vb84tq3bp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyAiOpqceqfg7w_hiBdLRu6WpwgL7WtPmf4"
@@ -20,7 +26,12 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "286208052974-s12qhomjlhhi5l96uiuv464vb84tq3bp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
