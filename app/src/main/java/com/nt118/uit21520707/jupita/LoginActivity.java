@@ -27,8 +27,6 @@ public class LoginActivity extends AppCompatActivity {
 
     private final FirebaseDatabase mUserDatabase = FirebaseDatabase.getInstance();
 
-    private Button loginButton;
-
     private EditText editTextUsername;
 
     private EditText editTextPassword;
@@ -38,7 +36,7 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_logout);
 
-        loginButton = findViewById(R.id.LG);
+        Button loginButton = findViewById(R.id.LG);
         editTextUsername = findViewById(R.id.edtUsn);
         editTextPassword = findViewById(R.id.edtPw);
 
