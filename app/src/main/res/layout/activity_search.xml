@@ -5,19 +5,7 @@
     android:background="@color/background"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <ImageButton
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:id="@+id/btn_search"
-        android:background="@color/background"
-        android:src="@drawable/search"
-        android:scaleType="fitXY"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginStart="5dp"
-        android:layout_marginEnd="5dp"/>
-
-    <EditText
+    <SearchView
         android:id="@+id/edit_text_search_query"
         android:layout_width="0dp"
         android:layout_height="50dp"
@@ -26,7 +14,7 @@
         android:autofillHints="nameTrack"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/btn_search"
+        app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginStart="5dp"
         android:layout_marginEnd="5dp"/>
 
@@ -34,7 +22,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintStart_toStartOf="@id/edit_text_search_query"
-        app:layout_constraintEnd_toEndOf="@id/btn_search"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/edit_text_search_query"
         app:layout_constraintBottom_toBottomOf="parent"/>
 
