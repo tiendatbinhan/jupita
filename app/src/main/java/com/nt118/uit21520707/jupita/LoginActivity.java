@@ -4,10 +4,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -27,6 +30,8 @@ public class LoginActivity extends AppCompatActivity {
     private final FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
     private final FirebaseDatabase mUserDatabase = FirebaseDatabase.getInstance();
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
 
     private EditText editTextUsername;
 
@@ -41,6 +46,17 @@ public class LoginActivity extends AppCompatActivity {
         Button signupButton = findViewById(R.id.REG);
         editTextUsername = findViewById(R.id.edtUsn);
         editTextPassword = findViewById(R.id.edtPw);
+        CheckBox rememberUser = findViewById(R.id.rmb);
+        sharedPreferences = getSharedPreferences("User", Context.MODE_PRIVATE);
+        editor = sharedPreferences.edit();
+
+        String savedUsername = sharedPreferences.getString("username", "");
+        String savedPassword = sharedPreferences.getString("password", "");
+        boolean remembered = sharedPreferences.getBoolean("remembered", false);
+
+        editTextUsername.setText(savedUsername);
+        editTextPassword.setText(savedPassword);
+        rememberUser.setChecked(remembered);
 
         loginButton.setOnClickListener(view -> {
 
@@ -88,6 +104,21 @@ public class LoginActivity extends AppCompatActivity {
                                             Toast.makeText(LoginActivity.this,
                                                     "Sign in successfully.", Toast.LENGTH_LONG).show();
                                             Log.i("Login", "Login successfully");
+
+                                            if (rememberUser.isChecked())
+                                            {
+                                                editor.putString("username", targetUsername);
+                                                editor.putString("password", targetPassword);
+                                                editor.putBoolean("remembered", true);
+                                                editor.apply();
+                                            }
+                                            else
+                                            {
+                                                editor.putString("username", "");
+                                                editor.putString("password", "");
+                                                editor.putBoolean("remembered", false);
+                                                editor.apply();
+                                            }
                                             Intent userInfo = new Intent(getApplicationContext(), UserInfoActivity.class);
                                             startActivity(userInfo);
                                             finish();
