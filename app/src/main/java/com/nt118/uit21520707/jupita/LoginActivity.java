@@ -88,6 +88,8 @@ public class LoginActivity extends AppCompatActivity {
                                             Toast.makeText(LoginActivity.this,
                                                     "Sign in successfully.", Toast.LENGTH_LONG).show();
                                             Log.i("Login", "Login successfully");
+                                            Intent userInfo = new Intent(getApplicationContext(), UserInfoActivity.class);
+                                            startActivity(userInfo);
                                             finish();
                                         } else {
                                             // If sign in fails, display a message to the user.
