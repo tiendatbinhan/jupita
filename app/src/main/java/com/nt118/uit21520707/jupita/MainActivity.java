@@ -142,8 +142,8 @@ public class MainActivity extends AppCompatActivity {
             // and start our media player.
             mediaPlayer.prepare();
             seekBar.setMax(mediaPlayer.getDuration());
-            int time = mediaPlayer.getDuration();
-            textViewEndTime.setText(Integer.toString(time/60)+":"+Integer.toString(time%60));
+            int time = mediaPlayer.getDuration()/1000;
+            textViewEndTime.setText(String.format("%02d",time/60)+":"+String.format("%02d",time%60));
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
@@ -151,7 +151,7 @@ public class MainActivity extends AppCompatActivity {
                     {
                         int pos = mediaPlayer.getCurrentPosition()/1000;
                         seekBar.setProgress(pos);
-                        textViewCurTime.setText(Integer.toString(pos/60)+":"+Integer.toString(pos%60));
+                        textViewCurTime.setText(String.format("%02d",pos/60)+":"+String.format("%02d",pos%60));
                     }
                     handler.postDelayed(this, 1000);
                 }
