@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/item_home"
+        android:icon="@drawable/img_vector_white_a700_14x15"
+        android:title="Home"/>
+
+    <item
+        android:id="@+id/item_playlist"
+        android:icon="@drawable/img_vector_white_a700_19x19"
+        android:title="Playlist"/>
+
+    <item
+        android:id="@+id/item_user"
+        android:title="User"/>
+</menu>
