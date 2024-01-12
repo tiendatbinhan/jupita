@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
     // creating a variable for
     // button and media player
-    ImageButton playBtn, pauseBtn;
+    Button playBtn, pauseBtn;
     MediaPlayer mediaPlayer;
 
     // creating a string for storing
