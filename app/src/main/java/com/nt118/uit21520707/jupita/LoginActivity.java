@@ -119,7 +119,7 @@ public class LoginActivity extends AppCompatActivity {
                                                 editor.putBoolean("remembered", false);
                                                 editor.apply();
                                             }
-                                            Intent userInfo = new Intent(getApplicationContext(), MainActivity.class);
+                                            Intent userInfo = new Intent(getApplicationContext(), HomepageActivity.class);
                                             startActivity(userInfo);
                                             finish();
                                         } else {
