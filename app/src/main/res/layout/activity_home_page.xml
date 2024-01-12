@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" xmlns:tools="http://schemas.android.com/tools">
+    <data/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        style="@style/groupStylegray_900"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:layout_width="match_parent"
+            android:layout_height="68dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            style="@style/groupStylegray_900"
+            app:menu="@menu/item_menu"
+            app:itemTextAppearance="@style/txtCenturyGothicbold11_1"
+            app:itemIconTint="@color/item_color"
+            app:itemTextColor="@color/item_color"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
