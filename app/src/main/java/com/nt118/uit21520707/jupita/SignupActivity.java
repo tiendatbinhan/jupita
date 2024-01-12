@@ -112,7 +112,7 @@ public class SignupActivity extends AppCompatActivity {
                     DatabaseReference databaseReference = mUserDatabase.getReference("Users").child(user.getUid());
                     databaseReference.child("email").setValue(finalTargetEmail);
                     databaseReference.child("username").setValue(targetUsername);
-                    Intent userInfo = new Intent(getApplicationContext(), UserInfoActivity.class);
+                    Intent userInfo = new Intent(getApplicationContext(), MainActivity.class);
                     startActivity(userInfo);
                     finish();
                 }

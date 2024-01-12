@@ -99,7 +99,7 @@
         app:layout_constraintBottom_toBottomOf="@id/logo"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginEnd="10dp"
-        android:background=""
+        android:background="#00FFFFFF"
         android:src="@drawable/img_search"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
