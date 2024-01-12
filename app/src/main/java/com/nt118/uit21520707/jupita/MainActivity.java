@@ -1,5 +1,6 @@
 package com.nt118.uit21520707.jupita;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
@@ -42,16 +43,19 @@ public class MainActivity extends AppCompatActivity {
 
     // creating a variable for our Firebase Database.
     final FirebaseStorage storage = FirebaseStorage.getInstance();
-    StorageReference storageRef = storage.getReferenceFromUrl("gs://jupita-e0dce.appspot.com/Justin Mylo feat. Jordan Shaw - Written In The Sky.flac");
-    // creating a variable for our
-    // Database Reference for Firebase.
-    DatabaseReference databaseReference;
+    StorageReference storageRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_playmusic);
 
+        Intent intent = getIntent();
+        String musicUrl = intent.getStringExtra("track_url");
+        if (musicUrl == null)
+            musicUrl = "gs://jupita-e0dce.appspot.com/Tomas Skyldeberg - In The Deep Ocean.flac";
+
+        storageRef = storage.getReferenceFromUrl(musicUrl);
         storageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>()
         {
 
@@ -133,7 +137,7 @@ public class MainActivity extends AppCompatActivity {
 //            Toast.makeText(this, "Audio started playing..", Toast.LENGTH_SHORT).show();
         } catch (IOException e) {
             // this line of code is use to handle error while playing our audio file.
-            Toast.makeText(this, "Error found is " + e, Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this, "Error found is " + e, Toast.LENGTH_SHORT).show();
         }
     }
 }
