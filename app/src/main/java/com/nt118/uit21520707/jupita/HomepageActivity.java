@@ -22,6 +22,7 @@ public class HomepageActivity extends AppCompatActivity {
         ConstraintLayout Current = findViewById(R.id.current);
         Current.setVisibility(View.GONE);
 
+
         BottomNavigationView bottomNavigationView = findViewById(R.id.navi_bar);
         NavigationBarView.OnItemSelectedListener listener = new NavigationBarView.OnItemSelectedListener() {
             @Override

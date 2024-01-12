@@ -1,12 +1,18 @@
 package com.nt118.uit21520707.jupita;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.media.AudioManager;
+import android.media.MediaMetadataRetriever;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -21,6 +27,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.database.ValueEventListener;
 
 import java.io.IOException;
+import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -100,13 +107,27 @@ public class MainActivity extends AppCompatActivity {
             // url to our media player.
             mediaPlayer.setDataSource(audioUrl);
 
+            MediaMetadataRetriever mmr = new MediaMetadataRetriever();
+            mmr.setDataSource(audioUrl, new HashMap<String, String>());
+
+            ImageView imageView = findViewById(R.id.music_cover_art);
+            TextView textViewTitle = findViewById(R.id.music_title);
+            TextView textViewArtist = findViewById(R.id.music_artist);
+
+            byte[] bytes = mmr.getEmbeddedPicture();
+            Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+            imageView.setImageBitmap(bitmap);
+
+            textViewTitle.setText(mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_TITLE));
+            textViewArtist.setText(mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ARTIST));
+
             // below line is use to prepare
             // and start our media player.
             mediaPlayer.prepare();
             mediaPlayer.start();
 
             // below line is use to display a toast message.
-            Toast.makeText(this, "Audio started playing..", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this, "Audio started playing..", Toast.LENGTH_SHORT).show();
         } catch (IOException e) {
             // this line of code is use to handle error while playing our audio file.
             Toast.makeText(this, "Error found is " + e, Toast.LENGTH_SHORT).show();
