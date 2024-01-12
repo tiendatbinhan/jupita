@@ -4,7 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    style="@style/groupStylegray_900">
+    style="@style/groupStylegray_900"
+    tools:context=".MainActivity"
+    tools:ignore="ExtraText"
+    android:background="@color/black">
 
     <ImageView
         android:id="@+id/revert_btn"
@@ -21,13 +24,13 @@
 
     <ImageView
         android:id="@+id/Icon_img"
-        android:layout_width="300dp"
-        android:layout_height="300dp"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
         android:src="@drawable/img_icon3"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="5dp"
         />
 
     <TextView
@@ -36,8 +39,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Jupita"
-        android:textSize="40sp"
-        android:layout_marginBottom="30dp"
+        android:textSize="30sp"
+        android:layout_marginBottom="10dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="@id/Icon_img" />
@@ -49,7 +52,7 @@
         android:layout_height="wrap_content"
         android:text="Let get you in"
         android:textColor="@color/white"
-        android:textSize="30sp"
+        android:textSize="20sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/Icon_txt" />
@@ -66,7 +69,7 @@
         android:textColor="@color/white"
         android:drawableEnd="@drawable/img_icon_white_a700"
         android:textColorHint="@color/gray_500"
-        android:textSize="30sp"
+        android:textSize="20sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/txt_Login"
@@ -81,10 +84,10 @@
         android:layout_marginTop="5dp"
         android:layout_marginRight="20dp"
         android:hint="Password"
-        android:drawablePadding="30dp"
+        android:drawablePadding="20dp"
         android:drawableEnd="@drawable/img_vector_12x15"
         android:textColorHint="@color/gray_500"
-        android:textSize="30sp"
+        android:textSize="20sp"
         app:layout_constraintTop_toBottomOf="@id/edt_UN" />
     <EditText
         android:id="@+id/edt_repassword"
@@ -94,7 +97,7 @@
         android:layout_marginTop="5dp"
         android:layout_marginRight="20dp"
         android:hint="Confirm Password"
-        android:drawablePadding="30dp"
+        android:drawablePadding="20dp"
         android:drawableEnd="@drawable/img_vector_12x15"
         android:textColorHint="@color/gray_500"
         android:textSize="30sp"
@@ -111,7 +114,7 @@
         android:textColor="@color/white"
         android:drawableEnd="@drawable/img_icon_white_a700"
         android:textColorHint="@color/gray_500"
-        android:textSize="30sp"
+        android:textSize="20sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/edt_repassword"
@@ -128,7 +131,7 @@
         android:clickable="true"
         android:text="Remember me"
         android:textColor="@color/white"
-        android:textSize="20sp"
+        android:textSize="15sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toBottomOf="@id/edt_eml" />
 
@@ -141,7 +144,7 @@
         android:backgroundTint="@color/red_800"
         android:clickable="true"
         android:text="Sign up"
-        android:textSize="30sp"
+        android:textSize="20sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/rmb_box" />
@@ -154,7 +157,7 @@
         android:layout_height="wrap_content"
         android:text="--------------or continue with--------------"
         android:textColor="@color/white"
-        android:textSize="20sp"
+        android:textSize="15sp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btn_signup"
