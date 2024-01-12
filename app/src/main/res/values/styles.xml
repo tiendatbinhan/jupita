@@ -366,4 +366,7 @@
         <item name="android:fontFamily">@font/century_gothic</item>
         <item name="android:textFontWeight" tools:targetApi="p">700</item>
     </style>
+    <style name="currentplay">
+        <item name="android:background">@drawable/rectangle_bg_red_800_radius_29_5</item>
+    </style>
 </resources>

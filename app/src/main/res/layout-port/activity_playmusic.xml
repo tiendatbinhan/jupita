@@ -67,6 +67,9 @@
         app:layout_constraintTop_toBottomOf="@id/music_artist"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        android:progressBackgroundTint="@color/white"
+        android:progressTint="@color/red_800"
+        android:thumbTint="@color/red_800"
         android:layout_marginTop="60dp">
 
     </SeekBar>
