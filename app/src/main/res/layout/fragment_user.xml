@@ -65,4 +65,26 @@
         android:text="Logout"
         style="@style/txtCenturyGothicbold13_1"/>
 
+    <TextView
+        android:id="@+id/username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/welcome_back"
+        app:layout_constraintStart_toEndOf="@id/your_username"
+        android:text="Sample username"
+        style="@style/txtCenturyGothic13"
+        android:textSize="@dimen/_16sp"
+        android:layout_margin="10dp"/>
+
+    <TextView
+        android:id="@+id/userid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="@id/your_userid"
+        app:layout_constraintStart_toEndOf="@id/your_userid"
+        android:text="Sample userID"
+        style="@style/txtCenturyGothic13"
+        android:textSize="@dimen/_16sp"
+        android:layout_marginHorizontal="10dp"/>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
