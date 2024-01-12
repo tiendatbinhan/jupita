@@ -15,6 +15,11 @@
         android:theme="@style/Theme.Jupita"
         tools:targetApi="31">
         <activity
+            android:name=".OtherActivity"
+            android:exported="true" >
+
+        </activity>
+        <activity
             android:name=".UserInfoActivity"
             android:exported="false" />
         <activity

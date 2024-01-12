@@ -1,0 +1,271 @@
+{
+  "name": "launch_screen",
+  "version": 32,
+  "source-key": {
+    "type": "figma",
+    "file": "01KL4kKIEiWEgpNoK13cLz",
+    "node": "432:467",
+    "version": "4753386470",
+    "component-id": "0e9426daf08a7399bea47f76019db3e529576d11"
+  },
+  "default": "Launch Screen",
+  "design": {
+    "atoms": [
+      {
+        "type": "group",
+        "id": "top_level",
+        "root": "true"
+      },
+      {
+        "type": "group",
+        "id": "status bar"
+      },
+      {
+        "type": "group",
+        "id": "Group 40"
+      },
+      {
+        "type": "text",
+        "id": "Version 0.0.0.1"
+      },
+      {
+        "type": "vector",
+        "id": "Vector"
+      },
+      {
+        "type": "vector",
+        "id": "Vector1"
+      },
+      {
+        "type": "text",
+        "id": "Jupita"
+      },
+      {
+        "type": "image",
+        "id": "icon 3"
+      }
+    ],
+    "modes": {
+      "Launch Screen": {
+        "rules": [
+          {
+            "id": "top_level",
+            "is-structured": "false",
+            "children": [
+              "status bar",
+              "Group 40",
+              "Version 0.0.0.1"
+            ],
+            "background-color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.05555555555555555",
+              "value": "0.07058823529411765"
+            }
+          },
+          {
+            "id": "status bar",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": "19.0"
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": "14.0"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "388.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "18.0"
+              }
+            },
+            "is-structured": "false",
+            "children": [
+              "Vector",
+              "Vector1"
+            ]
+          },
+          {
+            "id": "Group 40",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": "36.0"
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": "161.0"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "360.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "300.0"
+              }
+            },
+            "is-structured": "false",
+            "children": [
+              "Jupita",
+              "icon 3"
+            ],
+            "clip-content": "false"
+          },
+          {
+            "id": "Version 0.0.0.1",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": "69.0"
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": "893.0"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "293.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "29.0"
+              }
+            },
+            "color": {
+              "alpha": "1.0",
+              "hue": "0.0",
+              "saturation": "0.0",
+              "value": "1.0"
+            },
+            "text-content": "version 0.0.0.1",
+            "overflow": "visible",
+            "max-lines": "-1",
+            "text-size": "18.0",
+            "line-height": "1.4510000016954208",
+            "typeface": "Kaushan Script"
+          },
+          {
+            "id": "Vector",
+            "margin": {
+              "left": "321.0"
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "vector-content": "vector.svg"
+          },
+          {
+            "id": "Vector1",
+            "margin": {
+              "left": "8.830841064453125",
+              "top": "2.046875",
+              "right": "342.2481918334961",
+              "bottom": "5.767604827880859"
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "proportional",
+                "value": "1.0"
+              }
+            },
+            "vector-content": "vector1.svg"
+          },
+          {
+            "id": "Jupita",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": "0.0"
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": "203.0"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "360.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "52.0"
+              }
+            },
+            "color": {
+              "alpha": "1.0",
+              "hue": "331.2",
+              "saturation": "1.0",
+              "value": "0.7843137254901961"
+            },
+            "text-content": "Jupita",
+            "overflow": "visible",
+            "max-lines": "-1",
+            "text-size": "36.0",
+            "line-height": "1.4510000016954208",
+            "typeface": "Kaushan Script"
+          },
+          {
+            "id": "icon 3",
+            "alignment": {
+              "horizontal": {
+                "attachment": "start",
+                "offset": "33.0"
+              },
+              "vertical": {
+                "attachment": "start",
+                "offset": "0.0"
+              }
+            },
+            "size-constraints": {
+              "width-constraints": {
+                "sizing-mode": "fixed",
+                "value": "300.0"
+              },
+              "height-constraints": {
+                "sizing-mode": "fixed",
+                "value": "300.0"
+              }
+            },
+            "image-content": "icon_3.png",
+            "scale": "cover"
+          }
+        ]
+      }
+    }
+  },
+  "previews": [
+    {
+      "design": "Launch Screen",
+      "size": {
+        "width": 433.0,
+        "height": 922.0
+      }
+    }
+  ],
+  "adin-component-search-paths": [],
+  "image-search-paths": [],
+  "vector-search-paths": []
+}
