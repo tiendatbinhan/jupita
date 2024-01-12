@@ -141,7 +141,7 @@ public class MainActivity extends AppCompatActivity {
             // below line is use to prepare
             // and start our media player.
             mediaPlayer.prepare();
-            seekBar.setMax(mediaPlayer.getDuration());
+            seekBar.setMax(mediaPlayer.getDuration()/1000);
             int time = mediaPlayer.getDuration()/1000;
             textViewEndTime.setText(String.format("%02d",time/60)+":"+String.format("%02d",time%60));
             runOnUiThread(new Runnable() {
