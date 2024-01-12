@@ -80,7 +80,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 // calling method to play audio.
-                playAudio(audioUrl);
+                if (mediaPlayer == null) playAudio(audioUrl);
+                else mediaPlayer.start();
             }
         });
         pauseBtn.setOnClickListener(new View.OnClickListener() {
@@ -92,15 +93,16 @@ public class MainActivity extends AppCompatActivity {
                     // pausing the media player if
                     // media player is playing we are
                     // calling below line to stop our media player.
-                    mediaPlayer.stop();
-                    mediaPlayer.reset();
-                    mediaPlayer.release();
+                    mediaPlayer.pause();
+//                    mediaPlayer.stop();
+//                    mediaPlayer.reset();
+//                    mediaPlayer.release();
 
                     // below line is to display a message when media player is paused.
-                    Toast.makeText(MainActivity.this, "Audio has been paused", Toast.LENGTH_SHORT).show();
+                    // Toast.makeText(MainActivity.this, "Audio has been paused", Toast.LENGTH_SHORT).show();
                 } else {
                     // this method is called when media player is not playing.
-                    Toast.makeText(MainActivity.this, "Audio has not played", Toast.LENGTH_SHORT).show();
+                    // Toast.makeText(MainActivity.this, "Audio has not played", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -108,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void playAudio(String audioUrl) {
         // initializing media player
-        mediaPlayer = new MediaPlayer();
+        mediaPlayer = MediaPlayerHelper.getMediaPlayer();
 
         // below line is use to set the audio stream type for our media player.
         mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
@@ -185,5 +187,14 @@ public class MainActivity extends AppCompatActivity {
             // this line of code is use to handle error while playing our audio file.
 //            Toast.makeText(this, "Error found is " + e, Toast.LENGTH_SHORT).show();
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        //debug code
+        Intent intent = new Intent(MainActivity.this, HomepageActivity.class);
+        startActivity(intent);
     }
 }

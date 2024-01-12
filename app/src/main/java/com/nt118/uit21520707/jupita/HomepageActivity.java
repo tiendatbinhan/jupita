@@ -5,9 +5,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
+import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.SeekBar;
+import android.widget.TextView;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
@@ -55,5 +59,54 @@ public class HomepageActivity extends AppCompatActivity {
         };
         bottomNavigationView.setOnItemSelectedListener(listener);
         bottomNavigationView.setSelectedItemId(R.id.item_home);
+
+        Handler handler = new Handler();
+
+        ConstraintLayout currentPlaying = findViewById(R.id.current);
+        MediaPlayer mediaPlayer = MediaPlayerHelper.getMediaPlayer();
+        if (mediaPlayer == null)
+        {
+            currentPlaying.setVisibility(View.GONE);
+        }
+        else
+        {
+            TextView textViewCurTime = findViewById(R.id.music_time_current);
+            TextView textViewEndTime = findViewById(R.id.music_time_end);
+            currentPlaying.setVisibility(View.VISIBLE);
+            SeekBar seekBar = findViewById(R.id.music_seek);
+            seekBar.setMax(mediaPlayer.getDuration()/1000);
+            int time = mediaPlayer.getDuration()/1000;
+
+            textViewEndTime.setText(String.format("%02d",time/60)+":"+String.format("%02d",time%60));
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    int pos = mediaPlayer.getCurrentPosition() / 1000;
+                    seekBar.setProgress(pos);
+                    textViewCurTime.setText(String.format("%02d",pos/60)+":"+String.format("%02d",pos%60));
+                    handler.postDelayed(this, 1000);
+                }
+            });
+
+            seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                @Override
+                public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                    if(fromUser)
+                    {
+                        mediaPlayer.seekTo(progress*1000);
+                    }
+                }
+
+                @Override
+                public void onStartTrackingTouch(SeekBar seekBar) {
+
+                }
+
+                @Override
+                public void onStopTrackingTouch(SeekBar seekBar) {
+
+                }
+            });
+        }
     }
 }
