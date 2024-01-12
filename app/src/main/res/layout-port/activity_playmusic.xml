@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/background">
+    android:background="@color/white">
 
     <ImageView
         android:id="@+id/music_cover_art"
@@ -27,7 +27,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:text="Sample title"
-        android:textColor="@color/main_text_color"
+        android:textColor="@color/black"
         android:textStyle="bold"
         android:textSize="50sp"
         android:textAlignment="center"
@@ -50,18 +50,9 @@
     </TextView>
 
     <SeekBar
-        android:id="@+id/music_seek"
-        android:layout_width="350dp"
-        android:layout_height="30dp"
-        app:layout_constraintTop_toBottomOf="@id/music_artist"
-        android:progressBackgroundTint="@color/main_text_color"
-        android:progressTint="@color/main_text_color"
-        android:thumbTint="@color/main_text_color"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="60dp">
-
-    </SeekBar>
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <TextView
         android:id="@+id/music_time_current"

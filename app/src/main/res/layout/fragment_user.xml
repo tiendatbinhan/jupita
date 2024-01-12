@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/groupStylegray_900">
+
+    <ImageView
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        style="@style/groupStyle" />
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintDimensionRatio="1:1"
+        android:background="@drawable/icon"
+        app:layout_constraintTop_toTopOf="@id/welcome_back"
+        app:layout_constraintBottom_toBottomOf="@id/welcome_back"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginHorizontal="10dp"/>
+
+    <TextView
+        android:id="@+id/welcome_back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@id/logo"
+        android:text="User"
+        style="@style/txtCenturyGothicbold13_1"
+        android:textSize="@dimen/_26sp"
+        android:layout_margin="10dp"/>
+
+    <TextView
+        android:id="@+id/your_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/welcome_back"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="Current username: "
+        style="@style/txtCenturyGothicbold13_1"
+        android:textSize="@dimen/_16sp"
+        android:layout_margin="10dp"/>
+
+    <TextView
+        android:id="@+id/your_userid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/your_username"
+        app:layout_constraintStart_toStartOf="parent"
+        android:text="Current user ID: "
+        style="@style/txtCenturyGothicbold13_1"
+        android:textSize="@dimen/_16sp"
+        android:layout_margin="10dp"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/your_userid"
+        app:layout_constraintStart_toStartOf="@id/your_userid"
+        android:background="@drawable/rectangle_bg_red_800_radius_29_5"
+        android:layout_marginTop="10dp"
+        android:text="Logout"
+        style="@style/txtCenturyGothicbold13_1"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

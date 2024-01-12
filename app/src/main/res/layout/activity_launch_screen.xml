@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools">
+    <data/>
+    <LinearLayout android:gravity="center_horizontal"
+        android:id="@+id/linearLaunchScreen"
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:orientation="vertical" style="@style/groupStylegray_900">
+        <FrameLayout android:id="@+id/frameStackjupita"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="@dimen/_300pxv"
+            android:layout_marginEnd="@dimen/_47pxh"
+            android:layout_marginStart="@dimen/_52pxh"
+            android:layout_marginTop="@dimen/_161pxv" android:layout_width="@dimen/_333pxh">
+            <TextView android:ellipsize="end"
+                android:id="@+id/txtJupita"
+                android:layout_gravity="bottom|center"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_38pxv"
+                android:layout_marginEnd="@dimen/_115pxh"
+                android:layout_marginStart="@dimen/_115pxh"
+                android:layout_marginTop="@dimen/_38pxv"
+                android:layout_width="wrap_content"
+                android:singleLine="true"
+                android:text="@string/lbl_jupita"
+                style="@style/txtKaushanScriptregular36" tools:text="@string/lbl_jupita"/>
+            <ImageView android:id="@+id/imageIconThree"
+                android:layout_gravity="start"
+                android:layout_height="@dimen/_300pxh"
+                android:layout_width="match_parent"
+                android:scaleType="fitXY"
+                imageRes="@{@drawable/img_icon3}"
+                tools:ignore="ContentDescription" tools:src="@drawable/img_icon3"/>
+        </FrameLayout>
+        <TextView android:ellipsize="end"
+            android:id="@+id/txtVersionCounter"
+            android:layout_gravity="center_horizontal"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/_2pxv"
+            android:layout_marginEnd="@dimen/_52pxh"
+            android:layout_marginStart="@dimen/_52pxh"
+            android:layout_marginTop="@dimen/_268pxv"
+            android:layout_width="wrap_content"
+            android:singleLine="true"
+            android:text="@string/lbl_version_0_0_0_1"
+            style="@style/txtKaushanScriptregular18" tools:text="@string/lbl_version_0_0_0_1"/>
+    </LinearLayout>
+</layout>

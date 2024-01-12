@@ -12,5 +12,6 @@
 
     <item
         android:id="@+id/item_user"
+        android:icon="@drawable/img_vector_white_a700_22x18"
         android:title="User"/>
 </menu>
