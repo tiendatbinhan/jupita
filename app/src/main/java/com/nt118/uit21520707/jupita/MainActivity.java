@@ -9,10 +9,12 @@ import android.media.MediaMetadataRetriever;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -45,6 +47,8 @@ public class MainActivity extends AppCompatActivity {
     final FirebaseStorage storage = FirebaseStorage.getInstance();
     StorageReference storageRef;
 
+    SeekBar seekBar;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +58,8 @@ public class MainActivity extends AppCompatActivity {
         String musicUrl = intent.getStringExtra("track_url");
         if (musicUrl == null)
             musicUrl = "gs://jupita-e0dce.appspot.com/Tomas Skyldeberg - In The Deep Ocean.flac";
+
+        seekBar = findViewById(R.id.music_seek);
 
         storageRef = storage.getReferenceFromUrl(musicUrl);
         storageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>()
@@ -117,6 +123,8 @@ public class MainActivity extends AppCompatActivity {
             ImageView imageView = findViewById(R.id.music_cover_art);
             TextView textViewTitle = findViewById(R.id.music_title);
             TextView textViewArtist = findViewById(R.id.music_artist);
+            TextView textViewCurTime = findViewById(R.id.music_time_current);
+            TextView textViewEndTime = findViewById(R.id.music_time_end);
 
             byte[] bytes = mmr.getEmbeddedPicture();
             Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
@@ -125,12 +133,50 @@ public class MainActivity extends AppCompatActivity {
             textViewTitle.setText(mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_TITLE));
             textViewArtist.setText(mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ARTIST));
 
+            Handler handler = new Handler();
+
             textViewTitle.setSelected(true);
             textViewArtist.setSelected(true);
 
             // below line is use to prepare
             // and start our media player.
             mediaPlayer.prepare();
+            seekBar.setMax(mediaPlayer.getDuration());
+            int time = mediaPlayer.getDuration();
+            textViewEndTime.setText(Integer.toString(time/60)+":"+Integer.toString(time%60));
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    if(mediaPlayer != null)
+                    {
+                        int pos = mediaPlayer.getCurrentPosition()/1000;
+                        seekBar.setProgress(pos);
+                        textViewCurTime.setText(Integer.toString(pos/60)+":"+Integer.toString(pos%60));
+                    }
+                    handler.postDelayed(this, 1000);
+                }
+            });
+
+            seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+                @Override
+                public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                    if(mediaPlayer != null && fromUser)
+                    {
+                        mediaPlayer.seekTo(progress*1000);
+                    }
+                }
+
+                @Override
+                public void onStartTrackingTouch(SeekBar seekBar) {
+
+                }
+
+                @Override
+                public void onStopTrackingTouch(SeekBar seekBar) {
+
+                }
+            });
+
             mediaPlayer.start();
 
             // below line is use to display a toast message.
