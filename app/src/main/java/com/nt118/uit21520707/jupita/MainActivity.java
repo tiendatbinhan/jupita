@@ -121,6 +121,9 @@ public class MainActivity extends AppCompatActivity {
             textViewTitle.setText(mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_TITLE));
             textViewArtist.setText(mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ARTIST));
 
+            textViewTitle.setSelected(true);
+            textViewArtist.setSelected(true);
+
             // below line is use to prepare
             // and start our media player.
             mediaPlayer.prepare();
