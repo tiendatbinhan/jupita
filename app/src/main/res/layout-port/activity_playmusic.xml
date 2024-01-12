@@ -3,8 +3,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/background">
+    style="@style/groupStylegray_900">
 
+    <ImageButton
+        android:layout_width="39dp"
+        android:layout_height="24dp"
+        android:background="@drawable/img_arrowleft"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_margin="20dp"
+        >
+
+    </ImageButton>
     <ImageView
         android:id="@+id/music_cover_art"
         android:layout_width="200dp"
@@ -27,7 +37,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         android:text="Sample title"
-        android:textColor="@color/main_text_color"
+        android:textColor="@color/white"
         android:textStyle="bold"
         android:textSize="50sp"
         android:textAlignment="center"
@@ -45,23 +55,27 @@
         android:text="Sample artist"
         android:textSize="25sp"
         android:textAlignment="center"
-        android:layout_marginTop="5dp">
+        android:layout_marginTop="5dp"
+        android:textColor="@color/white">
 
     </TextView>
 
-    <SeekBar
+    <androidx.appcompat.widget.AppCompatSeekBar
         android:id="@+id/music_seek"
         android:layout_width="350dp"
-        android:layout_height="30dp"
-        app:layout_constraintTop_toBottomOf="@id/music_artist"
-        android:progressBackgroundTint="@color/main_text_color"
-        android:progressTint="@color/main_text_color"
-        android:thumbTint="@color/main_text_color"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="68dp"
+        android:progressBackgroundTint="@color/white"
+        android:progressTint="@color/white"
+        android:thumbTint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginTop="60dp">
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/music_artist">
 
-    </SeekBar>
+    </androidx.appcompat.widget.AppCompatSeekBar>
+
+
 
     <TextView
         android:id="@+id/music_time_current"
@@ -69,7 +83,9 @@
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="@id/music_seek"
         android:text="00:00"
-        app:layout_constraintTop_toBottomOf="@id/music_seek">
+        app:layout_constraintTop_toBottomOf="@id/music_seek"
+        android:textColor="@color/white"
+        android:textSize="15sp">
 
     </TextView>
 
@@ -79,39 +95,43 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="@id/music_seek"
         android:text="59:59"
-        app:layout_constraintTop_toBottomOf="@id/music_seek">
+        app:layout_constraintTop_toBottomOf="@id/music_seek"
+        android:textColor="@color/white"
+        android:textSize="15sp">
 
     </TextView>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/music_seek"
+        app:layout_constraintTop_toBottomOf="@id/music_time_current"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         android:id="@+id/play_layout">
 
         <!--Button for playing audio-->
-        <Button
+        <ImageButton
             android:id="@+id/idBtnPlay"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Play Audio file"
+            android:background="@drawable/play"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:scaleType="fitXY"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            android:textAllCaps="false" />
+            />
 
         <!--Button for pausing the audio-->
-        <Button
+        <ImageButton
             android:id="@+id/idBtnPause"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:background="@drawable/pause"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:scaleType="fitXY"
             app:layout_constraintTop_toBottomOf="@id/idBtnPlay"
             app:layout_constraintLeft_toLeftOf="@id/idBtnPlay"
             app:layout_constraintRight_toRightOf="@id/idBtnPlay"
-            android:text="Pause Audio"
-            android:textAllCaps="false" />
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

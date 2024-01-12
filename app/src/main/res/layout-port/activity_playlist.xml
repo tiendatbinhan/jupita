@@ -3,14 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@color/background">
+    style="@style/groupStylegray_900">
 
     <TextView
         android:id="@+id/title_playlist"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Current playlist"
-        android:textColor="@color/main_text_color"
+        android:text="Current play"
+        android:textColor="@color/white"
         android:textStyle="bold"
         android:textSize="25sp"
         android:layout_margin="15dp"

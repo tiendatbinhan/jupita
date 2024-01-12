@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -25,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
     // creating a variable for
     // button and media player
-    Button playBtn, pauseBtn;
+    ImageButton playBtn, pauseBtn;
     MediaPlayer mediaPlayer;
 
     // creating a string for storing
