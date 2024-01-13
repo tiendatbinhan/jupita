@@ -26,13 +26,14 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-        RecyclerView recyclerViewFavourite = view.findViewById(R.id.list_playlist);
+        RecyclerView recyclerViewFavourite = view.findViewById(R.id.list_favourite);
         List<Music> musicArrayList = MusicHelper.getMusicWithoutArt();
         MusicAdapter musicAdapter = new MusicAdapter(this.getContext(), musicArrayList);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this.getContext(), LinearLayoutManager.VERTICAL, false);
         recyclerViewFavourite.setLayoutManager(layoutManager);
         recyclerViewFavourite.setAdapter(musicAdapter);
         Handler handler = new Handler();
+
         this.requireActivity().runOnUiThread(new Runnable() {
             @Override
             public void run() {
