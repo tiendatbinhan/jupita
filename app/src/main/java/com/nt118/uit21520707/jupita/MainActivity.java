@@ -49,11 +49,19 @@ public class MainActivity extends AppCompatActivity {
     StorageReference storageRef;
 
     SeekBar seekBar;
+    Handler handler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_playmusic);
+
+//        if (MediaPlayerHelper.isPrepared)
+//        {
+//            if (mediaPlayer.isPlaying()) mediaPlayer.stop();
+//            mediaPlayer.reset();
+//            mediaPlayer.release();
+//        }
 
         Intent intent = getIntent();
         String musicUrl = intent.getStringExtra("track_url");
@@ -102,7 +110,6 @@ public class MainActivity extends AppCompatActivity {
     private void playAudio(String audioUrl) {
         mediaPlayer = MediaPlayerHelper.getMediaPlayer();
         // below line is use to set the audio stream type for our media player.
-        mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
         try {
             // below line is use to set our
             // url to our media player.
@@ -122,8 +129,8 @@ public class MainActivity extends AppCompatActivity {
         super.onBackPressed();
 
         //debug code
-        Intent intent = new Intent(MainActivity.this, HomepageActivity.class);
-        startActivity(intent);
+//        Intent intent = new Intent(MainActivity.this, HomepageActivity.class);
+//        startActivity(intent);
     }
 
     private void setUI()
@@ -144,7 +151,7 @@ public class MainActivity extends AppCompatActivity {
         textViewTitle.setText(mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_TITLE));
         textViewArtist.setText(mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ARTIST));
 
-        Handler handler = new Handler();
+        handler = new Handler();
 
         textViewTitle.setSelected(true);
         textViewArtist.setSelected(true);
@@ -184,5 +191,11 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        handler.removeCallbacksAndMessages(null);
     }
 }

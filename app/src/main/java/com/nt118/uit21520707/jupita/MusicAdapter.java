@@ -1,12 +1,15 @@
 package com.nt118.uit21520707.jupita;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.MediaMetadataRetriever;
+import android.media.MediaPlayer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -44,6 +47,22 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.ViewHolder> 
         assert music != null;
         holder.title.setText(music.getTitle());
         holder.artist.setText(music.getArtist());
+        holder.setItemClickListener((view, position1, isLongClick) -> {
+            if (!isLongClick)
+            {
+                MediaPlayer mediaPlayer = MediaPlayerHelper.getMediaPlayer();
+                if (MediaPlayerHelper.isPrepared)
+                {
+                    if (mediaPlayer.isPlaying()) mediaPlayer.stop();
+                    mediaPlayer.reset();
+                }
+                Music music1 = musicList.get(position1);
+                String url = music1.getStreamLink();
+                Intent intent = new Intent(view.getContext(), MainActivity.class);
+                intent.putExtra("track_url", url);
+                view.getContext().startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -55,24 +74,23 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.ViewHolder> 
     {
         ImageView coverArt;
         TextView artist, title;
-        View.OnClickListener onClickListener;
-        View.OnLongClickListener onLongClickListener;
+        ItemClickListener itemClickListener;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             this.title = itemView.findViewById(R.id.title);
             this.artist = itemView.findViewById(R.id.artist);
-            this.onClickListener = null;
-            this.onLongClickListener = null;
+            itemView.setOnClickListener(this);
+            itemView.setOnLongClickListener(this);
         }
 
-        public void setOnClickListener(View.OnClickListener onClickListener) {
-            this.onClickListener = onClickListener;
+        public void setItemClickListener(ItemClickListener itemClickListener)
+        {
+            this.itemClickListener = itemClickListener;
         }
 
         @Override
         public void onClick(View v) {
-            v.setOnClickListener(this.onClickListener);
-            v.callOnClick();
+            itemClickListener.onClick(v, getAdapterPosition(), false);
         }
 
         @Override

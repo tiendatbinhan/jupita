@@ -19,6 +19,7 @@ import com.google.android.material.navigation.NavigationBarView;
 import java.security.KeyStore;
 
 public class HomepageActivity extends AppCompatActivity {
+    Handler handler = new Handler();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,9 +57,11 @@ public class HomepageActivity extends AppCompatActivity {
         };
         bottomNavigationView.setOnItemSelectedListener(listener);
         bottomNavigationView.setSelectedItemId(R.id.item_home);
+    }
 
-        Handler handler = new Handler();
-
+    @Override
+    protected void onResume() {
+        super.onResume();
         ConstraintLayout currentPlaying = findViewById(R.id.current);
         MediaPlayer mediaPlayer = MediaPlayerHelper.getMediaPlayer();
         if (!MediaPlayerHelper.isPrepared)
@@ -78,7 +81,7 @@ public class HomepageActivity extends AppCompatActivity {
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    if (mediaPlayer != null || !MediaPlayerHelper.isPrepared)
+                    if (mediaPlayer != null && MediaPlayerHelper.isPrepared)
                     {
                         int pos = mediaPlayer.getCurrentPosition() / 1000;
                         seekBar.setProgress(pos);
@@ -112,8 +115,14 @@ public class HomepageActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onStop() {
-        super.onStop();
+    protected void onPause() {
+        super.onPause();
+        handler.removeCallbacksAndMessages(null);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
         MediaPlayer mediaPlayer = MediaPlayerHelper.getMediaPlayer();
         mediaPlayer.stop();
         mediaPlayer.reset();
