@@ -84,5 +84,4 @@
         android:id="@+id/list_add"
         app:layout_constraintTop_toBottomOf="@id/search_bar"
         />
-
 </androidx.constraintlayout.widget.ConstraintLayout>
