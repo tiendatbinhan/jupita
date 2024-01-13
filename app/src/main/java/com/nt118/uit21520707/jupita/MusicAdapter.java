@@ -58,6 +58,7 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.ViewHolder> 
                 }
                 Music music1 = musicList.get(position1);
                 String url = music1.getStreamLink();
+                MediaPlayerHelper.trackList.add(music1);
                 Intent intent = new Intent(view.getContext(), MainActivity.class);
                 intent.putExtra("track_url", url);
                 view.getContext().startActivity(intent);

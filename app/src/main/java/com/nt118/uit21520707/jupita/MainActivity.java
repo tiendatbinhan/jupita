@@ -114,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void playAudio(String audioUrl) {
+    public void playAudio(String audioUrl) {
         mediaPlayer = MediaPlayerHelper.getMediaPlayer();
         // below line is use to set the audio stream type for our media player.
         try {
