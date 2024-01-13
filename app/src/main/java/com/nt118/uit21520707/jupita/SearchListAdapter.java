@@ -6,21 +6,26 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Filter;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class SearchListAdapter extends ArrayAdapter<Song> {
+public class SearchListAdapter extends ArrayAdapter<Music> {
 
     private Activity context;
-    public SearchListAdapter(Activity context, int layoutID, List<Song>
+    private Filter filter;
+    private List<Music> original, fItems;
+    public SearchListAdapter(Activity context, int layoutID, List<Music>
             objects) {
         super(context, layoutID, objects);
         this.context = context;
+        this.original = objects;
     }
 
     @NonNull
@@ -32,7 +37,7 @@ public class SearchListAdapter extends ArrayAdapter<Song> {
                             false);
         }
 
-        Song song = getItem(position);
+        Music song = getItem(position);
 
         TextView title = (TextView)
                 convertView.findViewById(R.id.title);
@@ -52,5 +57,48 @@ public class SearchListAdapter extends ArrayAdapter<Song> {
         return convertView;
     }
 
+    @NonNull
+    @Override
+    public Filter getFilter() {
+        if (filter == null) filter = new MusicFilter();
+        return filter;
+    }
 
+    class MusicFilter extends Filter
+    {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            FilterResults results = new FilterResults();
+            String prefix = constraint.toString().toLowerCase();
+            ArrayList<Music> filterItems;
+            if (prefix == null || prefix.length() == 0)
+            {
+                filterItems = new ArrayList<>(original);
+            }
+            else {
+                filterItems = new ArrayList<>();
+                original.forEach(music -> {
+                    assert music != null;
+                    String artistLower = music.getArtist().toLowerCase();
+                    String titleLower = music.getTitle().toLowerCase();
+                    if (artistLower.contains(prefix) || titleLower.contains(prefix))
+                    {
+                        filterItems.add(music);
+                    }
+                });
+            }
+            results.count = filterItems.size();
+            results.values = filterItems;
+            return results;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            fItems = (ArrayList<Music>) results.values;
+            notifyDataSetChanged();
+            clear();
+            fItems.forEach(SearchListAdapter.this::add);
+            notifyDataSetInvalidated();
+        }
+    }
 }

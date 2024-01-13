@@ -82,20 +82,13 @@ public class MainActivity extends AppCompatActivity {
         playBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // checking the media player
-                // if the audio is playing or not.
                 if (isPlaying[0]) {
-                    // pausing the media player if
-                    // media player is playing we are
-                    // calling below line to stop our media player.
                     mediaPlayer.pause();
-//                    mediaPlayer.stop();
-//                    mediaPlayer.reset();
-//                    mediaPlayer.release();
                     isPlaying[0] = false;
                     playBtn.setImageResource(R.drawable.icon_play);
                 }
                 else {
+                    mediaPlayer.start();
                     isPlaying[0] = true;
                     playBtn.setImageResource(R.drawable.icon_pause);
                 }
@@ -120,11 +113,7 @@ public class MainActivity extends AppCompatActivity {
 
             mediaPlayer.start();
 
-            // below line is use to display a toast message.
-//            Toast.makeText(this, "Audio started playing..", Toast.LENGTH_SHORT).show();
-        } catch (IOException e) {
-            // this line of code is use to handle error while playing our audio file.
-//            Toast.makeText(this, "Error found is " + e, Toast.LENGTH_SHORT).show();
+        } catch (IOException ignored) {
         }
     }
 
@@ -160,8 +149,6 @@ public class MainActivity extends AppCompatActivity {
         textViewTitle.setSelected(true);
         textViewArtist.setSelected(true);
 
-        // below line is use to prepare
-        // and start our media player.
         seekBar.setMax(mediaPlayer.getDuration()/1000);
         int time = mediaPlayer.getDuration()/1000;
         textViewEndTime.setText(String.format("%02d",time/60)+":"+String.format("%02d",time%60));
