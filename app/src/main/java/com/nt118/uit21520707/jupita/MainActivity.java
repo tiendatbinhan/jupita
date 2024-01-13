@@ -18,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -105,6 +106,12 @@ public class MainActivity extends AppCompatActivity {
 
         ImageButton btnBack = findViewById(R.id.btnBack);
         btnBack.setOnClickListener(view -> this.onBackPressed());
+
+        ToggleButton btnLoop = findViewById(R.id.btnLoop);
+        btnLoop.setOnClickListener(v -> {
+            mediaPlayer.setLooping(btnLoop.isChecked());
+            MediaPlayerHelper.isLoop = btnLoop.isChecked();
+        });
     }
 
     private void playAudio(String audioUrl) {

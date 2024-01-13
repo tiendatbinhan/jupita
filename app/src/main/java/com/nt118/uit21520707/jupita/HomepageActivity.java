@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 
+import android.app.ActivityManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Handler;
@@ -17,6 +18,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
 import java.security.KeyStore;
+import java.util.List;
 
 public class HomepageActivity extends AppCompatActivity {
     Handler handler = new Handler();
@@ -122,10 +124,12 @@ public class HomepageActivity extends AppCompatActivity {
 
     @Override
     protected void onDestroy() {
-        super.onDestroy();
         MediaPlayer mediaPlayer = MediaPlayerHelper.getMediaPlayer();
-        mediaPlayer.stop();
+        if (MediaPlayerHelper.isPrepared && mediaPlayer.isPlaying()) mediaPlayer.stop();
         mediaPlayer.reset();
-        mediaPlayer.release();
+        ActivityManager activityManager = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
+        List<ActivityManager.RunningTaskInfo> taskInfoList = activityManager.getRunningTasks(10);
+        if (taskInfoList.size() <= 1) mediaPlayer.release();
+        super.onDestroy();
     }
 }

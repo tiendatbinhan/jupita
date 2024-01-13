@@ -7,6 +7,7 @@ import android.media.MediaPlayer;
 public class MediaPlayerHelper {
     public static MediaPlayer mediaPlayer;
     public static boolean isPrepared = false;
+    public static boolean isLoop = false;
 
     public MediaPlayerHelper()
     {
@@ -22,7 +23,8 @@ public class MediaPlayerHelper {
                 MediaPlayerHelper.isPrepared = true;
             });
             mediaPlayer.setOnCompletionListener(mp -> {
-                MediaPlayerHelper.isPrepared = false;
+                if (!isLoop)
+                    MediaPlayerHelper.isPrepared = false;
             });
         }
         return mediaPlayer;

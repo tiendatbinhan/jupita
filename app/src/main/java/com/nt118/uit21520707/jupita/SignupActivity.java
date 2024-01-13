@@ -4,7 +4,9 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ActivityManager;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
@@ -20,6 +22,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.List;
 
 public class SignupActivity extends AppCompatActivity {
 
@@ -125,4 +129,14 @@ public class SignupActivity extends AppCompatActivity {
         });
     }
 
+    @Override
+    protected void onDestroy() {
+        MediaPlayer mediaPlayer = MediaPlayerHelper.getMediaPlayer();
+        if (MediaPlayerHelper.isPrepared && mediaPlayer.isPlaying()) mediaPlayer.stop();
+        mediaPlayer.reset();
+        ActivityManager activityManager = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
+        List<ActivityManager.RunningTaskInfo> taskInfoList = activityManager.getRunningTasks(10);
+        if (taskInfoList.size() <= 1) mediaPlayer.release();
+        super.onDestroy();
+    }
 }

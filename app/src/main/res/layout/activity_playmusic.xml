@@ -117,11 +117,11 @@
     </TextView>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/music_seek"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="@id/music_seek"
+        app:layout_constraintRight_toRightOf="@id/music_seek"
         android:layout_marginTop="20dp"
         android:id="@+id/play_layout">
 
@@ -146,7 +146,7 @@
             app:layout_constraintTop_toTopOf="@id/play_layout"
             android:layout_marginTop="20dp"
             app:srcCompat="@drawable/img_union"
-            android:backgroundTint="@color/black"
+            android:backgroundTint="#00FFFFFF"
             app:layout_constraintRight_toLeftOf="@id/idBtnPlay"
             android:layout_marginRight="20dp"
             />
@@ -158,7 +158,7 @@
             app:layout_constraintLeft_toRightOf="@id/idBtnPlay"
             android:layout_marginLeft="20dp"
             app:srcCompat="@drawable/img_union_white_a700"
-            android:backgroundTint="@color/black"
+            android:backgroundTint="#00FFFFFF"
             android:id="@+id/btn_next"
             />
 
@@ -171,18 +171,18 @@
             app:layout_constraintTop_toTopOf="@id/play_layout"
             android:layout_marginTop="20dp"
             app:srcCompat="@drawable/img_vector_14x15"
-            android:backgroundTint="@color/black"/>
+            android:backgroundTint="#00FFFFFF"/>
 
-        <ImageButton
+        <ToggleButton
+            android:id="@+id/btnLoop"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:layout_marginLeft="20dp"
-            android:id="@+id/vector1"
             app:layout_constraintLeft_toLeftOf="@id/play_layout"
             app:layout_constraintTop_toBottomOf="@id/vector2"
             android:layout_marginTop="10dp"
-            app:srcCompat="@drawable/img_vector_white_a700_11x11"
-            android:backgroundTint="@color/black"
+            android:background="@drawable/img_vector_white_a700_11x11"
+            android:backgroundTint="@color/state_select"
             />
 
         <ImageButton
@@ -190,7 +190,7 @@
             android:layout_height="25dp"
             android:id="@+id/vector3"
             app:srcCompat="@drawable/img_vector_white_a700_14x14"
-            android:backgroundTint="@color/black"
+            android:backgroundTint="#00FFFFFF"
             app:layout_constraintRight_toRightOf="@id/play_layout"
             android:layout_marginRight="20dp"
             android:layout_marginTop="20dp"
@@ -204,7 +204,7 @@
             app:layout_constraintTop_toBottomOf="@id/vector3"
             android:layout_marginRight="20dp"
             app:srcCompat="@drawable/img_vector_white_a700_15x16"
-            android:backgroundTint="@color/black"
+            android:backgroundTint="#00FFFFFF"
             android:id="@+id/vector6"
             android:layout_marginTop="10dp"
             />

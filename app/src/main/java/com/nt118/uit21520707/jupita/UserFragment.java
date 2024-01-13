@@ -1,9 +1,11 @@
 package com.nt118.uit21520707.jupita;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -35,6 +37,7 @@ public class UserFragment extends Fragment {
         String email = firebaseUser.getEmail();
         assert email != null;
         final String[] username = new String[1];
+        final String[] userId = new String[1];
         if (email.endsWith("@jupita.com"))
         {
             username[0] = email.replaceAll("@jupita.com", "");
@@ -48,6 +51,7 @@ public class UserFragment extends Fragment {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     user[0] = snapshot.getValue(User.class);
+                    userId[0] = snapshot.getKey();
                 }
 
                 @Override
@@ -59,6 +63,16 @@ public class UserFragment extends Fragment {
         }
         TextView textViewUsername = view.findViewById(R.id.username);
         textViewUsername.setText(username[0]);
+        TextView textViewUserId = view.findViewById(R.id.userid);
+        textViewUserId.setText(userId[0]);
+
+        Button logoutButton = view.findViewById(R.id.btn_logout);
+        logoutButton.setOnClickListener(v -> {
+            Intent intent = new Intent(UserFragment.this.requireActivity(), LoginActivity.class);
+            startActivity(intent);
+            firebaseAuth.signOut();
+            UserFragment.this.requireActivity().finish();
+        });
         return view;
     }
 }
