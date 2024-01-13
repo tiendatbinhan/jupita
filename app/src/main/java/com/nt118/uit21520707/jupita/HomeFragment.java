@@ -27,9 +27,9 @@ public class HomeFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         RecyclerView recyclerViewFavourite = view.findViewById(R.id.list_playlist);
-        List<Music> musicArrayList = MusicHelper.getMusicList();
+        List<Music> musicArrayList = MusicHelper.getMusicWithoutArt();
         MusicAdapter musicAdapter = new MusicAdapter(this.getContext(), musicArrayList);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this.getContext(), LinearLayoutManager.HORIZONTAL, false);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(this.getContext(), LinearLayoutManager.VERTICAL, false);
         recyclerViewFavourite.setLayoutManager(layoutManager);
         recyclerViewFavourite.setAdapter(musicAdapter);
         Handler handler = new Handler();
@@ -37,7 +37,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void run() {
                 musicAdapter.notifyDataSetChanged();
-                handler.postDelayed(this, 300);
+                handler.postDelayed(this, 1000);
             }
         });
         return view;

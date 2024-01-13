@@ -78,7 +78,7 @@ public class HomepageActivity extends AppCompatActivity {
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    if (mediaPlayer != null)
+                    if (mediaPlayer != null || !MediaPlayerHelper.isPrepared)
                     {
                         int pos = mediaPlayer.getCurrentPosition() / 1000;
                         seekBar.setProgress(pos);

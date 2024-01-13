@@ -26,6 +26,7 @@ import java.util.Map;
 
 public class MusicHelper extends Application {
     public MusicHelper(){}
+    @Deprecated
     static List<Music> getMusicList()
     {
         ArrayList<Music> musicArrayList = new ArrayList<>();
@@ -43,17 +44,19 @@ public class MusicHelper extends Application {
                         Log.i("uri", url);
                         final String[] audio_url = new String[1];
                         reference[0] = storage.getReferenceFromUrl(url);
+
                         reference[0].getDownloadUrl().addOnSuccessListener(uri -> {
                             audio_url[0] = uri.toString();
                             MediaMetadataRetriever mmr = new MediaMetadataRetriever();
                             mmr.setDataSource(audio_url[0], new HashMap<>());
-                            byte[] bytes = mmr.getEmbeddedPicture();
-                            Music newMusic = new Music(bytes, null, null, audio_url[0]);
-                            musicArrayList.add(newMusic);
+                            byte[] bytes;
+                            bytes = mmr.getEmbeddedPicture();
+
                         });
+                        Music newMusic = new Music(null, null, null, url);
+                        musicArrayList.add(newMusic);
                     }
                 });
-
             }
 
             @Override
@@ -61,6 +64,7 @@ public class MusicHelper extends Application {
 
             }
         });
+
         return musicArrayList;
     }
 

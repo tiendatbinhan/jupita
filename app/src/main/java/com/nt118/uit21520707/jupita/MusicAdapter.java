@@ -3,15 +3,22 @@ package com.nt118.uit21520707.jupita;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.media.MediaMetadataRetriever;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+
+import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicReference;
 
 public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.ViewHolder> {
     Context context;
@@ -35,10 +42,8 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.ViewHolder> 
     public void onBindViewHolder(@NonNull MusicAdapter.ViewHolder holder, int position) {
         Music music = musicList.get(position);
         assert music != null;
-        Bitmap bitmap = BitmapFactory.decodeByteArray(music.getEmbeddedCoverArt(),
-                0, music.getEmbeddedCoverArt().length);
-        holder.coverArt.setImageBitmap(bitmap);
-
+        holder.title.setText(music.getTitle());
+        holder.artist.setText(music.getArtist());
     }
 
     @Override
@@ -49,14 +54,25 @@ public class MusicAdapter extends RecyclerView.Adapter<MusicAdapter.ViewHolder> 
     static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener
     {
         ImageView coverArt;
+        TextView artist, title;
+        View.OnClickListener onClickListener;
+        View.OnLongClickListener onLongClickListener;
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            this.coverArt = itemView.findViewById(R.id.sample_cover_art);
+            this.title = itemView.findViewById(R.id.title);
+            this.artist = itemView.findViewById(R.id.artist);
+            this.onClickListener = null;
+            this.onLongClickListener = null;
+        }
+
+        public void setOnClickListener(View.OnClickListener onClickListener) {
+            this.onClickListener = onClickListener;
         }
 
         @Override
         public void onClick(View v) {
-
+            v.setOnClickListener(this.onClickListener);
+            v.callOnClick();
         }
 
         @Override
