@@ -69,16 +69,17 @@ public class SearchListAdapter extends ArrayAdapter<Music> {
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
             FilterResults results = new FilterResults();
-            String prefix = constraint.toString().toLowerCase();
+            CharSequence prefix = constraint.toString().toLowerCase();
             ArrayList<Music> filterItems;
-            if (prefix == null || prefix.length() == 0)
+            if (constraint == null || constraint.toString().length() == 0)
             {
-                filterItems = new ArrayList<>(original);
+                results.count = original.size();
+                results.values = original;
             }
-            else {
+            else
+            {
                 filterItems = new ArrayList<>();
                 original.forEach(music -> {
-                    assert music != null;
                     String artistLower = music.getArtist().toLowerCase();
                     String titleLower = music.getTitle().toLowerCase();
                     if (artistLower.contains(prefix) || titleLower.contains(prefix))
@@ -86,19 +87,20 @@ public class SearchListAdapter extends ArrayAdapter<Music> {
                         filterItems.add(music);
                     }
                 });
+                results.count = filterItems.size();
+                results.values = filterItems;
             }
-            results.count = filterItems.size();
-            results.values = filterItems;
             return results;
         }
 
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
-            fItems = (ArrayList<Music>) results.values;
-            notifyDataSetChanged();
             clear();
-            fItems.forEach(SearchListAdapter.this::add);
-            notifyDataSetInvalidated();
+            for(Music item : (List<Music>) results.values)
+            {
+                add(item);
+            }
+            notifyDataSetChanged();
         }
     }
 }

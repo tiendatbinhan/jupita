@@ -2,6 +2,7 @@ package com.nt118.uit21520707.jupita;
 
 import android.os.Bundle;
 import android.os.PersistableBundle;
+import android.text.TextUtils;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.SearchView;
@@ -15,10 +16,9 @@ import java.util.List;
 
 public class SongSearchActivity extends AppCompatActivity {
 
-    TextView title;
-    TextView artist;
-    List<Music> str;
+    List<Music> str, str1;
     SearchListAdapter adt;
+    ListView searchList;
 
 
     @Override
@@ -27,37 +27,27 @@ public class SongSearchActivity extends AppCompatActivity {
         setContentView(R.layout.activity_search);
 
         SearchView searchView = findViewById(R.id.search_bar);
-        str = str = MusicHelper.getMusicWithoutArt();
+        str = MusicHelper.getMusicWithoutArt();
+        str1 = MusicHelper.getMusicWithoutArt();
 
-        ListView searchList = findViewById(R.id.search_list);
+        searchList = findViewById(R.id.search_list);
+
+        adt = new SearchListAdapter (SongSearchActivity.this, R.layout.item_song_search, str);
+
+        searchList.setAdapter(adt);
 
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                if (searchList.getAdapter() == null)
-                {
-                    adt = new SearchListAdapter (SongSearchActivity.this, R.layout.item_song_search, str);
-                    searchList.setAdapter(adt);
-                }
-                filter(query);
                 return false;
             }
-
             @Override
             public boolean onQueryTextChange(String newText) {
-                if (searchList.getAdapter() == null)
-                {
-                    adt = new SearchListAdapter (SongSearchActivity.this, R.layout.item_song_search, str);
-                    searchList.setAdapter(adt);
-                }
-                filter(newText);
-                return false;
+                adt.clear();
+                adt.addAll(str1);
+                adt.getFilter().filter(newText);
+                return true;
             }
         });
-    }
-
-    private void filter(String query)
-    {
-        adt.getFilter().filter(query);
     }
 }
