@@ -10,6 +10,7 @@ import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -36,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
     // creating a variable for
     // button and media player
-    Button playBtn, pauseBtn;
+    ImageButton playBtn, pauseBtn;
     MediaPlayer mediaPlayer;
 
     // creating a string for storing
@@ -64,32 +65,26 @@ public class MainActivity extends AppCompatActivity {
         storageRef = storage.getReferenceFromUrl(musicUrl);
         storageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>()
         {
-
             @Override
             public void onSuccess(Uri uri) {
+                Log.i("uri", uri.toString());
                 audioUrl = uri.toString();
-            }
-        });
-
-        // initializing our buttons
-        playBtn = findViewById(R.id.idBtnPlay);
-        pauseBtn = findViewById(R.id.idBtnPause);
-
-        // setting on click listener for our play and pause buttons.
-        playBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // calling method to play audio.
                 if (mediaPlayer == null) playAudio(audioUrl);
                 else mediaPlayer.start();
             }
         });
-        pauseBtn.setOnClickListener(new View.OnClickListener() {
+
+        // initializing button
+        playBtn = findViewById(R.id.idBtnPlay);
+        final Boolean[] isPlaying = {true};
+
+        playBtn.setImageResource(R.drawable.icon_pause);
+        playBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // checking the media player
                 // if the audio is playing or not.
-                if (mediaPlayer.isPlaying()) {
+                if (isPlaying[0]) {
                     // pausing the media player if
                     // media player is playing we are
                     // calling below line to stop our media player.
@@ -97,21 +92,22 @@ public class MainActivity extends AppCompatActivity {
 //                    mediaPlayer.stop();
 //                    mediaPlayer.reset();
 //                    mediaPlayer.release();
-
-                    // below line is to display a message when media player is paused.
-                    // Toast.makeText(MainActivity.this, "Audio has been paused", Toast.LENGTH_SHORT).show();
-                } else {
-                    // this method is called when media player is not playing.
-                    // Toast.makeText(MainActivity.this, "Audio has not played", Toast.LENGTH_SHORT).show();
+                    isPlaying[0] = false;
+                    playBtn.setImageResource(R.drawable.icon_play);
+                }
+                else {
+                    isPlaying[0] = true;
+                    playBtn.setImageResource(R.drawable.icon_pause);
                 }
             }
         });
+
+        ImageButton btnBack = findViewById(R.id.btnBack);
+        btnBack.setOnClickListener(view -> this.onBackPressed());
     }
 
     private void playAudio(String audioUrl) {
-        // initializing media player
         mediaPlayer = MediaPlayerHelper.getMediaPlayer();
-
         // below line is use to set the audio stream type for our media player.
         mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
         try {
@@ -119,65 +115,8 @@ public class MainActivity extends AppCompatActivity {
             // url to our media player.
             mediaPlayer.setDataSource(audioUrl);
 
-            MediaMetadataRetriever mmr = new MediaMetadataRetriever();
-            mmr.setDataSource(audioUrl, new HashMap<String, String>());
-
-            ImageView imageView = findViewById(R.id.music_cover_art);
-            TextView textViewTitle = findViewById(R.id.music_title);
-            TextView textViewArtist = findViewById(R.id.music_artist);
-            TextView textViewCurTime = findViewById(R.id.music_time_current);
-            TextView textViewEndTime = findViewById(R.id.music_time_end);
-
-            byte[] bytes = mmr.getEmbeddedPicture();
-            Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
-            imageView.setImageBitmap(bitmap);
-
-            textViewTitle.setText(mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_TITLE));
-            textViewArtist.setText(mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ARTIST));
-
-            Handler handler = new Handler();
-
-            textViewTitle.setSelected(true);
-            textViewArtist.setSelected(true);
-
-            // below line is use to prepare
-            // and start our media player.
             mediaPlayer.prepare();
-            seekBar.setMax(mediaPlayer.getDuration()/1000);
-            int time = mediaPlayer.getDuration()/1000;
-            textViewEndTime.setText(String.format("%02d",time/60)+":"+String.format("%02d",time%60));
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    if(mediaPlayer != null)
-                    {
-                        int pos = mediaPlayer.getCurrentPosition()/1000;
-                        seekBar.setProgress(pos);
-                        textViewCurTime.setText(String.format("%02d",pos/60)+":"+String.format("%02d",pos%60));
-                    }
-                    handler.postDelayed(this, 1000);
-                }
-            });
-
-            seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-                @Override
-                public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                    if(mediaPlayer != null && fromUser)
-                    {
-                        mediaPlayer.seekTo(progress*1000);
-                    }
-                }
-
-                @Override
-                public void onStartTrackingTouch(SeekBar seekBar) {
-
-                }
-
-                @Override
-                public void onStopTrackingTouch(SeekBar seekBar) {
-
-                }
-            });
+            setUI();
 
             mediaPlayer.start();
 
@@ -196,5 +135,67 @@ public class MainActivity extends AppCompatActivity {
         //debug code
         Intent intent = new Intent(MainActivity.this, HomepageActivity.class);
         startActivity(intent);
+    }
+
+    private void setUI()
+    {
+        MediaMetadataRetriever mmr = new MediaMetadataRetriever();
+        mmr.setDataSource(audioUrl, new HashMap<String, String>());
+
+        ImageView imageView = findViewById(R.id.music_cover_art);
+        TextView textViewTitle = findViewById(R.id.music_title);
+        TextView textViewArtist = findViewById(R.id.music_artist);
+        TextView textViewCurTime = findViewById(R.id.music_time_current);
+        TextView textViewEndTime = findViewById(R.id.music_time_end);
+
+        byte[] bytes = mmr.getEmbeddedPicture();
+        Bitmap bitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+        imageView.setImageBitmap(bitmap);
+
+        textViewTitle.setText(mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_TITLE));
+        textViewArtist.setText(mmr.extractMetadata(MediaMetadataRetriever.METADATA_KEY_ARTIST));
+
+        Handler handler = new Handler();
+
+        textViewTitle.setSelected(true);
+        textViewArtist.setSelected(true);
+
+        // below line is use to prepare
+        // and start our media player.
+        seekBar.setMax(mediaPlayer.getDuration()/1000);
+        int time = mediaPlayer.getDuration()/1000;
+        textViewEndTime.setText(String.format("%02d",time/60)+":"+String.format("%02d",time%60));
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if(mediaPlayer != null)
+                {
+                    int pos = mediaPlayer.getCurrentPosition()/1000;
+                    seekBar.setProgress(pos);
+                    textViewCurTime.setText(String.format("%02d",pos/60)+":"+String.format("%02d",pos%60));
+                }
+                handler.postDelayed(this, 1000);
+            }
+        });
+
+        seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                if(mediaPlayer != null && fromUser)
+                {
+                    mediaPlayer.seekTo(progress*1000);
+                }
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
     }
 }
