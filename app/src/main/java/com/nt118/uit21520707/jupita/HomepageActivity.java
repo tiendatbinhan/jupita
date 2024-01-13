@@ -23,9 +23,6 @@ public class HomepageActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_page);
-        ConstraintLayout Current = findViewById(R.id.current);
-        Current.setVisibility(View.GONE);
-
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.navi_bar);
         NavigationBarView.OnItemSelectedListener listener = new NavigationBarView.OnItemSelectedListener() {
@@ -64,7 +61,7 @@ public class HomepageActivity extends AppCompatActivity {
 
         ConstraintLayout currentPlaying = findViewById(R.id.current);
         MediaPlayer mediaPlayer = MediaPlayerHelper.getMediaPlayer();
-        if (mediaPlayer == null)
+        if (!MediaPlayerHelper.isPrepared)
         {
             currentPlaying.setVisibility(View.GONE);
         }
@@ -81,9 +78,13 @@ public class HomepageActivity extends AppCompatActivity {
             runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
-                    int pos = mediaPlayer.getCurrentPosition() / 1000;
-                    seekBar.setProgress(pos);
-                    textViewCurTime.setText(String.format("%02d",pos/60)+":"+String.format("%02d",pos%60));
+                    if (mediaPlayer != null)
+                    {
+                        int pos = mediaPlayer.getCurrentPosition() / 1000;
+                        seekBar.setProgress(pos);
+                        textViewCurTime.setText(String.format("%02d",pos/60)+":"+String.format("%02d",pos%60));
+
+                    }
                     handler.postDelayed(this, 1000);
                 }
             });
@@ -108,5 +109,14 @@ public class HomepageActivity extends AppCompatActivity {
                 }
             });
         }
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        MediaPlayer mediaPlayer = MediaPlayerHelper.getMediaPlayer();
+        mediaPlayer.stop();
+        mediaPlayer.reset();
+        mediaPlayer.release();
     }
 }
