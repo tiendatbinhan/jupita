@@ -20,6 +20,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -91,5 +92,35 @@ public class MusicHelper extends Application {
             }
         });
         return musicArrayList;
+    }
+
+    static List<Music> getMusicWithoutArtRecommendation()
+    {
+        ArrayList<Music> musicArrayList = new ArrayList<>();
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Songs");
+        Query query = ref.orderByChild("location");
+        query.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                snapshot.getChildren().forEach(dataSnapshot -> {
+                    String artist = dataSnapshot.child("artist").getValue(String.class);
+                    String title = dataSnapshot.child("title").getValue(String.class);
+                    String url = dataSnapshot.child("location").getValue(String.class);
+                    Music music = new Music(null, artist, title, url);
+                    musicArrayList.add(music);
+                });
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+        Collections.shuffle(musicArrayList);
+        ArrayList<Music> result = new ArrayList<>();
+        for (int i = 0; i < 3; i++) {
+            result.add(musicArrayList.get(i));
+        }
+        return result;
     }
 }
