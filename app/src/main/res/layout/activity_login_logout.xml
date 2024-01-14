@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background">
+    android:background="@color/gray_900">
 
     <androidx.constraintlayout.utils.widget.ImageFilterView
         android:layout_width="200dp"
@@ -31,6 +31,7 @@
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
         android:ems="10"
+        android:background="@color/white"
         android:hint="Username"
         android:inputType="text"
         android:textSize="20sp"
@@ -50,15 +51,18 @@
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
+        android:background="@color/white"
         app:layout_constraintTop_toBottomOf="@id/edtUsn"
         android:layout_marginTop="5dp"
         />
 
     <Button
         android:id="@+id/REG"
+        android:background="@color/pink_A700"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Register"
+        android:textColor="@color/white"
         app:layout_constraintLeft_toRightOf="@id/split"
         android:layout_marginRight="30dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -70,6 +74,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Log in"
+        android:background="@color/pink_A700"
         app:layout_constraintRight_toRightOf="parent"
         android:layout_marginLeft="30dp"
         android:layout_marginRight="30dp"
@@ -79,6 +84,7 @@
     <CheckBox
         android:id="@+id/rmb"
         android:layout_width="wrap_content"
+        android:textColor="@color/white"
         android:layout_height="wrap_content"
         android:textSize="20sp"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -91,6 +97,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/checked"
+        android:textColor="@color/white"
         android:text="forgot password"
         android:clickable="true"
         android:textSize="20dp"
@@ -107,6 +114,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginBottom="10dp"
         android:textSize="20dp"
+        android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
