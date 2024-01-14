@@ -58,7 +58,7 @@
                 android:textSize="@dimen/_16sp"
                 android:layout_margin="5dp"/>
 
-            <androidx.recyclerview.widget.RecyclerView
+            <LinearLayout
                 android:id="@+id/list_playlist"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -66,7 +66,67 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 android:layout_margin="5dp"
-                />
+                android:orientation="horizontal">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/genre_tropical_house"
+                    android:layout_width="150dp"
+                    android:layout_height="100dp"
+                    android:layout_margin="5dp">
+                    <ImageView
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_width="150dp"
+                        android:layout_height="100dp"
+                        android:layout_margin="5dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/genre_tropical_house"
+                        />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#55FFFFFF"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:text="Tropical House"
+                        android:padding="2dp"
+                        style="@style/txtCenturyGothicbold24"
+                        android:textSize="@dimen/_13sp"
+                        android:textColor="@color/black"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/genre_pop"
+                    android:layout_width="150dp"
+                    android:layout_height="100dp"
+                    android:layout_margin="5dp">
+                    <ImageView
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_width="150dp"
+                        android:layout_height="100dp"
+                        android:layout_margin="5dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/genre_pop_music"
+                        />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#55FFFFFF"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:text="Pop"
+                        android:padding="2dp"
+                        style="@style/txtCenturyGothicbold24"
+                        android:textSize="@dimen/_13sp"
+                        android:textColor="@color/black"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/your_favourite"
