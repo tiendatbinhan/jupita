@@ -1,14 +1,14 @@
 {
   "project_info": {
-    "project_number": "706379452067",
-    "firebase_url": "https://jupita-dummies-default-rtdb.firebaseio.com",
-    "project_id": "jupita-dummies",
-    "storage_bucket": "jupita-dummies.appspot.com"
+    "project_number": "191018025388",
+    "firebase_url": "https://jupita-d2223-default-rtdb.firebaseio.com",
+    "project_id": "jupita-d2223",
+    "storage_bucket": "jupita-d2223.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:706379452067:android:5c596217d417ff022a3916",
+        "mobilesdk_app_id": "1:191018025388:android:5f221460a30735c873fa09",
         "android_client_info": {
           "package_name": "com.nt118.uit21520707.jupita"
         }
@@ -16,7 +16,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyDQYIRNkYs3CiL23aJNo9LvUafJkDOUmmg"
+          "current_key": "AIzaSyB5eNlXF-gDGFIiyIIIBWencw0C0l2TzPw"
         }
       ],
       "services": {
